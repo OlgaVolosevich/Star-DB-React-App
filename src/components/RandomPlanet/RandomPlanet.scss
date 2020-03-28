@@ -1,0 +1,33 @@
+.random-planet {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    padding: 1rem;
+    .planet-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 10px;
+        margin-right: 1rem;
+    }
+    .planet-info-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        .list-group {
+            width: 95%;
+            .list-group-item {
+                display: grid;
+                padding: .25rem;
+                grid-template-columns: 2fr 3fr;
+                .term {
+                    margin-right: .5rem;
+                }
+            }
+        }
+
+    }
+}
+  
+
+  
+

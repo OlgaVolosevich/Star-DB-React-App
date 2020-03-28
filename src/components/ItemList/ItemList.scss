@@ -1,0 +1,9 @@
+ul {
+    margin-top: 1rem;
+    li {
+        cursor: pointer;
+        &:hover {
+            background-color: #444;
+        }
+    }
+}
