@@ -5,10 +5,10 @@ class ItemList extends Component {
     
     render () {
         return (
-            <ul class="list-group">
-                <li class="list-group-item">Luke Skywalker</li>
-                <li class="list-group-item">Darth Vader</li>
-                <li class="list-group-item">R2-D2</li>
+            <ul className="list-group">
+                <li className="list-group-item">Luke Skywalker</li>
+                <li className="list-group-item">Darth Vader</li>
+                <li className="list-group-item">R2-D2</li>
             </ul>
         );
     } 
