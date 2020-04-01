@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import './RandomPlanet.scss';
 import SwapiService from './../../services/SwapiService';
+import Spinner from '../Spinner';
+import PlanetView from './PlanetView';
 
 class RandomPlanet extends Component {
 
   swapi = new SwapiService();
 
   state = { 
-    planet : {}
+    planet : {},
+    loading: true
   }
 
   onPlanetDataReady = (planet) => {
-    this.setState({ planet });
+    this.setState({ planet, loading: false });
   }
   getPlanetData(){
     const randomPlanetId = Math.floor((Math.random() * 15)+2);
@@ -24,31 +27,14 @@ class RandomPlanet extends Component {
   }
 
     render() {
-      const { planet : { id, name, population, rotationPeriod, diameter } } = this.state;
+      const { planet, loading } = this.state;
       return (
-        <div className="random-planet jumbotron">
-          <img className="planet-image" src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} />
-          <div className="planet-info-container">
-            <h4>{name}</h4>
-            <ul className="list-group">
-              <li className="list-group-item">
-                <span className="term">Population</span>
-                <span>{population}</span>
-              </li>
-              <li className="list-group-item">
-                <span className="term">Rotation Period</span>
-                <span>{rotationPeriod}</span>
-              </li>
-              <li className="list-group-item">
-                <span className="term">Diameter</span>
-                <span>{diameter}</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-  
+       <div className="random-planet jumbotron">
+         {loading ? <Spinner/> : <PlanetView planet={planet}/>} 
+       </div>
       );
     }
   }
 
 export default RandomPlanet;
+
