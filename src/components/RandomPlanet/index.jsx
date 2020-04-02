@@ -3,6 +3,7 @@ import './RandomPlanet.scss';
 import SwapiService from './../../services/SwapiService';
 import Spinner from '../Spinner';
 import PlanetView from './PlanetView';
+import FetchError from './FetchError';
 
 class RandomPlanet extends Component {
 
@@ -10,16 +11,24 @@ class RandomPlanet extends Component {
 
   state = { 
     planet : {},
-    loading: true
+    loading: true,
+    error: false
   }
 
   onPlanetDataReady = (planet) => {
     this.setState({ planet, loading: false });
   }
+
+  onFetchError = () => {
+    this.setState({
+      error: true
+    })
+  }
   getPlanetData(){
     const randomPlanetId = Math.floor((Math.random() * 15)+2);
     this.swapi.getPlanet(randomPlanetId)
-    .then(this.onPlanetDataReady);
+    .then(this.onPlanetDataReady)
+    .catch(this.onFetchError)
   }
 
   componentDidMount () {
@@ -27,10 +36,11 @@ class RandomPlanet extends Component {
   }
 
     render() {
-      const { planet, loading } = this.state;
+      const { planet, loading, error } = this.state;
+      const planetData = loading ? <Spinner/> : <PlanetView planet={planet}/>
       return (
        <div className="random-planet jumbotron">
-         {loading ? <Spinner/> : <PlanetView planet={planet}/>} 
+         {error ? <FetchError/> : planetData} 
        </div>
       );
     }
