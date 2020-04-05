@@ -6,6 +6,16 @@ import ItemList from './../ItemList';
 import PersonDetails from './../PersonDetails';
 
 class App extends Component {
+
+    state = {
+        selectedPerson : null
+    }
+
+    onSelectedPerson = (id) => {
+        this.setState({
+            selectedPerson : id
+        })
+    }
     
     render() {
         return (
@@ -14,10 +24,10 @@ class App extends Component {
             <RandomPlanet/>
             <div className="row">
                 <div className="col-md-6">
-                    <ItemList/>
+                    <ItemList onItemSelected={this.onSelectedPerson}/>
                 </div>
                 <div className="col-md-6">
-                    <PersonDetails/>
+                    <PersonDetails personId={this.state.selectedPerson}/>
                 </div>
             </div>
         </div>

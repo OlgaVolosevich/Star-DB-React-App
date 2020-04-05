@@ -32,7 +32,8 @@ class RandomPlanet extends Component {
   }
 
   componentDidMount () {
-    setInterval(() => this.getPlanetData(), 5000);
+    this.getPlanetData();
+    this.interval = setInterval(()=>this.getPlanetData(), 5000);
   }
 
     render() {
